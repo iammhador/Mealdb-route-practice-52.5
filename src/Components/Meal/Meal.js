@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Meal = ({ meal }) => {
   const {
@@ -10,10 +10,10 @@ const Meal = ({ meal }) => {
     idMeal,
     strMealThumb,
   } = meal;
-  const nevigate = useNavigate();
-  const handleNavigate = () => {
-    nevigate(`/${idMeal}`);
-  };
+  // const nevigate = useNavigate();
+  // const handleNavigate = () => {
+  //   nevigate(`./meal/${idMeal}`);
+  // };
   return (
     <div>
       <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 my-5 mb-5">
@@ -36,13 +36,13 @@ const Meal = ({ meal }) => {
             <span class="text-xm font-bold text-gray-900 dark:text-gray-400">
               {strCategory ? strCategory : "Not Found"}
             </span>
-            <a
+            <Link
               href="#"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              onClick={handleNavigate()}
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              to={`../meal/${idMeal}`}
             >
               Add to cart
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -6,7 +6,6 @@ import NF from "./Components/Not Found/NF";
 import Main from "./Components/Main/Main";
 import Meals from "./Components/Meals/Meals";
 import SMeal from "./Components/Single Meal/SMeal";
-import SingleMealShow from "./Components/SingleMealShow/SingleMealShow";
 
 function App() {
   const router = createBrowserRouter([
@@ -14,7 +13,7 @@ function App() {
       path: "/",
       element: <Main></Main>,
       children: [
-        { path: "/", element: <Restaurant></Restaurant> },
+        { index: true, element: <Home></Home>, errorElement: <NF></NF> },
         { path: "/home", element: <Home></Home> },
         { path: "/restaurant", element: <Restaurant></Restaurant> },
         {
@@ -28,14 +27,15 @@ function App() {
         },
         { path: "*", element: <NF></NF> },
         {
-          path: "/meal/:mealinfo",
-          loader: async () => {
+          path: "meal/:id",
+          loader: ({ params }) => {
             return fetch(
-              `https://www.themealdb.com/api/json/v1/1/search.php?s`
+              `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.id}`
             );
           },
-          element: <SingleMealShow></SingleMealShow>,
+          element: <SMeal></SMeal>,
         },
+
         { path: "*", element: <NF></NF> },
       ],
     },
